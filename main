@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int binarySearch(string nameArray[], int low, int high, string key);
+
+//driver code
+int main(void) {
+    string nameArray[] = {
+        "Alvi", "Bowman", "Bush", "Carn", "Carnivale", "Chandler", "Fortman",
+        "Greenburg", "Hart", "Hudson", "Marshall", "Paulino", "Pearson",
+        "Rodriguez", "Stiles", "Sutton", "Wendland"
+    };
+    string key = "Alvi";
+    int n = sizeof(nameArray) / sizeof(nameArray[0]);
+    int result = binarySearch(nameArray, 0, n - 1, key);
+
+    if (result == -1) {
+        cout << "Element not present.";
+    }
+    else {
+        cout << "Element found at index " << result;
+    }
+}
+
+int binarySearch(string nameArray[], int low, int high, string key) {
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (nameArray[mid] == key) {
+            return mid;
+        }
+        if (nameArray[mid] < key) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return -1; // Element not found
+}
